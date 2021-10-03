@@ -26,7 +26,7 @@ Bind the instances into clusters, one target group per cluster.
 * Step5-6: (default)
 
 
-## Instance setup
+## Instance setup (Option 1)
 All the following commands should be run as **root user**.
 ```
 sudo su
@@ -49,4 +49,15 @@ Please set up the correct route in `hello.py` in advance.
 ```
 export FLASK_APP=hello.py
 flask run --host=0.0.0.0 --port=80
+```
+
+## Instance setup (Option 2)
+The commands above can be executed by scripts, please also use **root user**.
+```
+sudo su
+```
+and run the scripts from root directory
+```
+./scripts/build.sh
+./scripts/run.sh
 ```
