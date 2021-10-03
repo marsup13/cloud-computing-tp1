@@ -1,10 +1,9 @@
 #/bin/bash
 
 # Python virtual env
-sudo apt install python3-venv
-mkdir venv_tp1 && cd venv_tp1
-python3 -m venv venv
-source venv/bin/activate
 sudo su
+apt install python3-venv python3-pip
+python3 -m venv venv_tp1
+source venv_tp1/bin/activate
 pip install Flask
-
+deactivate
