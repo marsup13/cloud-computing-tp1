@@ -1,8 +1,9 @@
 # TP1
 
-The guide is seperated into two parts. 
+The guide is seperated into three parts. 
 * The first half is about how to build up the clusters and load balancer.
 * The second part is regarding how to setup the environment of instances (with two options). 
+* The third section provides a script to build a virtual environment and evaluate the system.
 
 ## Load Balancer and Clusters
 ### Instance
@@ -68,4 +69,9 @@ and run the scripts from root directory
 ```
 ./scripts/build.sh
 ./scripts/run.sh
+```
+
+## Evaluation
+```
+./scripts/evaluate.sh
 ```
