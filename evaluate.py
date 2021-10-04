@@ -4,17 +4,16 @@ import requests
 # DNS address of the load balancer, like
 url = "http://tp1-408593023.us-east-1.elb.amazonaws.com/"
 
-def sendRequest(cluster):
-    r = requests.get(url + cluster)
-    print(r.json(), end='\tstatus ')
-    print(r.status_code)
+def sendRequest(cluster, iter):
+    for i in range(iter):
+        r = requests.get(url + cluster)
+        print(r.json(), end='\tstatus ')
+        print(r.status_code)
 
 def scenario1(cluster):
     print('\033[1;33m' + '-'*15 + cluster + ' starts scenario1' + '-'*15 + '\033[0m')
     start = time.time()
-    for i in range(1000):
-        print('%3d' % i + ': ', end='')
-        sendRequest(cluster)
+    sendRequest(cluster, 1000)
     duration = time.time()-start
 
     print('\033[1;33m' + '-'*8, end='')
@@ -24,14 +23,10 @@ def scenario1(cluster):
 def scenario2(cluster):
     print('\033[1;36m' + '-'*15 + cluster + ' starts scenario2' + '-'*15 + '\033[0m')
     start = time.time()
-    for i in range(500):
-        print('%3d' % i + ': ', end='')
-        sendRequest(cluster)
+    sendRequest(cluster, 500)
     print('\033[1;36m' + '-'*21 + 'Sleep 60 sec ' + '-'*21 + '\033[0m')
     time.sleep(60)
-    for i in range(1000):
-        print('%3d' % i + ': ', end='')
-        sendRequest(cluster)
+    sendRequest(cluster, 1000)
     duration = time.time()-start
 
     print('\033[1;36m' + '-'*8, end='')
