@@ -1,9 +1,10 @@
 from flask import Flask
 app = Flask(__name__)
 
-@app.route('/') # Should be set as a specific path, like '/cluster1' or '/cluster2'
-def my_app():
+@app.route('/<path:text>', methods=['GET']) 
+def my_app(text):
+    if text.startswith('cluster'):
         return {
-                "instance": "cluster name",
+                "instance": "cluster name", # specify what should be return
         }
 
