@@ -6,6 +6,7 @@ url = "http://tp1-408593023.us-east-1.elb.amazonaws.com/"
 
 def sendRequest(cluster, iter):
     for i in range(iter):
+        print('%3d' % i + ': ', end='')
         r = requests.get(url + cluster)
         print(r.json(), end='\tstatus ')
         print(r.status_code)
