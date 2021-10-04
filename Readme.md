@@ -2,12 +2,13 @@
 
 The guide is seperated into two parts. 
 * The first half is about how to build up the clusters and load balancer.
-* The second part is regarding how to setup the environment of instances. 
+* The second part is regarding how to setup the environment of instances (with two options). 
 
 ## Load Balancer and Clusters
 ### Instance
-* Choose **All TCP** in **Configure Security Group** in order to let the requests reach the instance. 
-* After launching the first instance, choose **existing security group** in this step. 
+* Configure Security Group
+    * First instance: Create a new security group and choose **All TCP** in order to let the requests reach the instance. 
+    * Others: choose **existing security group** and select the group that just created. 
 * Name the instances after launching to ease the following procedures.
 
 ### Target Group
@@ -16,7 +17,7 @@ Bind the instances into clusters, one target group per cluster.
     * Target type: `instance` 
     * Health check path: `/cluster1` or `/cluster2`
 * Second step
-    * Choose the instances that belong to the cluster
+    * Register the instances that belong to the cluster
 ### Load Balancer
 * Type: `Application Load Balancer`
 * Step1: default configuration is fine, but be awared of choosing the avaliablility zone that the instances stay at.
@@ -24,6 +25,13 @@ Bind the instances into clusters, one target group per cluster.
 * Step3: choose the existing security group.
 * Step4: choose the existing target group.
 * Step5-6: (default)
+
+After launching, do the following steps to redirect requests.
+* `Listener` -> `View/edit rules` (add a new one if there isn't any listener exists)
+* Add rules
+    * `Add condition` -> `path` -> fill in the value (such as */cluster1* or */cluster2*) -> confirm
+    * `Add action` -> `Forward to` -> select the target group -> confirm
+    * Save
 
 
 ## Instance setup (Option 1)
